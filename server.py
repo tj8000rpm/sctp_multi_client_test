@@ -19,12 +19,14 @@ while True:
     c, addr = sk.accept()
     print('receiving')
     print(c.recv(4096))
-    print('sending')
-    now = datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
     try:
-        c.send(now)
+        while True:
+            print('sending')
+            now = datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+            c.send(now)
+            sleep(1)
     except :
-        pass
+        break
     finally:
         c.close()
 s.close()

@@ -22,19 +22,25 @@ def gothread(server):
     time.sleep(random.random()*3)
     print "send to {}".format(server)
     sk.sendto("hi",server)
+    #sk.send("hi",server)
     msg=sk.recv(1500*3)
     print msg
     time.sleep(random.random()*3)
 
-try:
-    ths=[]
-    for server in servers:
-        th=threading.Thread(target=gothread,args=(server,))
-        th.start()
-        ths.append(th)
-    for th in ths:
-        th.join()
+for server in servers:
+    sk.connect(server)
+time.sleep(5)
 
+try:
+    for i in range(3):
+        ths=[]
+        for server in servers:
+            th=threading.Thread(target=gothread,args=(server,))
+            th.start()
+            ths.append(th)
+        for th in ths:
+            th.join()
+        time.sleep(5)
 finally:
     if sk:
         sk.close()
