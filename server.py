@@ -29,4 +29,4 @@ while True:
         break
     finally:
         c.close()
-s.close()
+sk.close()

@@ -28,11 +28,11 @@ def gothread(server):
     time.sleep(random.random()*3)
 
 for server in servers:
-    sk.connect(server)
+    print  sk.connect(server)
 time.sleep(5)
 
 try:
-    for i in range(3):
+    for i in range(1):
         ths=[]
         for server in servers:
             th=threading.Thread(target=gothread,args=(server,))
